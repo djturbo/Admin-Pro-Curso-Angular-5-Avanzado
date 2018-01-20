@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { ProgressComponent } from '../pages/progress/progress.component';
@@ -9,6 +10,7 @@ import { MainComponent } from '../pages/main.component';
 
 import { UserModule } from '../pages/user/user.module';
 import { SharedModule } from '../shared/shared.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
     declarations: [
@@ -20,8 +22,10 @@ import { SharedModule } from '../shared/shared.module';
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
         UserModule,
-        SharedModule
+        SharedModule,
+        ComponentsModule
     ],
     exports: [
         DashboardComponent,

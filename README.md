@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Crear Tags
+
+Para crear un tag para congelar una versión que nos interese, se ejecutan el siguiente comando:
+$ git tag -a v1.0.0 -m 'Version 1 - Boileplated'
+$ git tag -> Para ver los tags
+& git push --tag -> Para subir los tags
