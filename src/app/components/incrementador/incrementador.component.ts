@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-incrementador',
@@ -10,6 +10,7 @@ export class IncrementadorComponent implements OnInit {
   @Input('pct')pct: number;
   @Input('leyend')leyend: string;
   @Output() setPCT: EventEmitter<number> = new EventEmitter();
+  @ViewChild('percentInput') percentInput: ElementRef;
 
   constructor() { }
 
@@ -23,13 +24,14 @@ export class IncrementadorComponent implements OnInit {
 
     this.pct += increment;
     this.setPCT.emit(this.pct);
+    this.percentInput.nativeElement.focus();
   }
   onInputPctChange(newValue: number) {
     if ( newValue >= 0 && newValue <= 100){
       this.setPCT.emit(newValue);
     }
-
   }
+
   ngOnInit() {
   }
 

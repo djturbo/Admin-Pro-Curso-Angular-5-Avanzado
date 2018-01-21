@@ -1,0 +1,6 @@
+<div *ngIf="options && options.leyenda">
+    <h3>{{ options.leyenda }}</h3>
+    <div style="display: block">
+        <canvas baseChart [data]="options.data" [labels]="options.labels" [chartType]="options.type"></canvas>
+    </div>
+</div>
