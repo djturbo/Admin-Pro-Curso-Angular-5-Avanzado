@@ -5,6 +5,7 @@ import { Graficas1Component } from './pages/graficas1/graficas1.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { MainComponent } from './pages/main.component';
 import { ProgressComponent } from './pages/progress/progress.component';
+import { AccountSettingComponent } from './pages/user/index';
 
 const routes: Routes = [
     {
@@ -14,6 +15,7 @@ const routes: Routes = [
         { path: 'dashboard', component: DashboardComponent },
         { path: 'progress', component: ProgressComponent },
         { path: 'graficas', component: Graficas1Component },
+        { path: 'account-setting', component: AccountSettingComponent },
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ] },
     { path: 'login', redirectTo: 'user/sign-in', pathMatch: 'full'},
