@@ -6,20 +6,24 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { MainComponent } from './pages/main.component';
 import { ProgressComponent } from './pages/progress/progress.component';
 import { AccountSettingComponent } from './pages/user/index';
+import { PromesasComponent } from './pages/promesas/promesas.component';
+import { RxjsComponent } from './pages/rxjs/rxjs.component';
 
 const routes: Routes = [
     {
         path: '',
         component: MainComponent,
         children: [
-        { path: 'dashboard', component: DashboardComponent },
-        { path: 'progress', component: ProgressComponent },
-        { path: 'graficas', component: Graficas1Component },
-        { path: 'account-setting', component: AccountSettingComponent },
+        { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+        { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },
+        { path: 'graficas', component: Graficas1Component, data: { title: 'Graficas' } },
+        { path: 'promesas', component: PromesasComponent, data: { title: 'Promesas' } },
+        { path: 'rxjs', component: RxjsComponent, data: { title: 'RXJS Observables/Observer' } },
+        { path: 'account-setting', component: AccountSettingComponent, data: { title: 'Dashboard' } },
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ] },
-    { path: 'login', redirectTo: 'user/sign-in', pathMatch: 'full'},
-    { path: 'registrar', redirectTo: 'user/sign-up', pathMatch: 'full'},
+    { path: 'login', redirectTo: 'user/sign-in', pathMatch: 'full', data: { title: 'Log In' }},
+    { path: 'registrar', redirectTo: 'user/sign-up', pathMatch: 'full', data: { title: 'Registrar' }},
     { path: '**', component: NotFoundComponent }
 ];
 

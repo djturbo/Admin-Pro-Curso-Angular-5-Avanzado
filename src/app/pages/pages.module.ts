@@ -11,13 +11,17 @@ import { MainComponent } from '../pages/main.component';
 import { UserModule } from '../pages/user/user.module';
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
     declarations: [
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
-        MainComponent
+        MainComponent,
+        PromesasComponent,
+        RxjsComponent
     ],
     imports: [
         CommonModule,
