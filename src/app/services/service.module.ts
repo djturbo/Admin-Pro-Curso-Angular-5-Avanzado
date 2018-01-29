@@ -1,9 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import {
   SettingsService,
   SharedService,
-  SidebarService
+  SidebarService,
+  ConfigService,
+  AuthService,
+  UserService,
+  LoginGuard
 } from './';
 
 @NgModule({
@@ -14,7 +19,17 @@ import {
   providers: [
     SettingsService,
     SharedService,
-    SidebarService
+    SidebarService,
+    UserService,
+    AuthService,
+    LoginGuard,
+    ConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (conf: ConfigService) => function() { return conf.load().subscribe(); },
+      deps: [ConfigService],
+      multi: true
+    }
   ]
 })
 export class ServiceModule { }

@@ -8,11 +8,13 @@ import { ProgressComponent } from './pages/progress/progress.component';
 import { AccountSettingComponent } from './pages/user/index';
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
+import { LoginGuard } from './services/index';
 
 const routes: Routes = [
     {
         path: '',
         component: MainComponent,
+        canActivate: [LoginGuard],
         children: [
         { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
         { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },
