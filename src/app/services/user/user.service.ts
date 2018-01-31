@@ -8,6 +8,8 @@ import { Constants } from '../../util/constants.const';
 
 import 'rxjs/add/operator/map';
 import swal from 'sweetalert2';
+import { AuthService } from '../user/auth.service';
+import { FileUploadService } from '../file-upload.service';
 
 
 @Injectable()
@@ -18,7 +20,9 @@ export class UserService {
 
   constructor(
     private _http: HttpClient,
-    private _configService: ConfigService
+    private _configService: ConfigService,
+    private _authService: AuthService,
+    private _fileUploadService: FileUploadService
   ) {
     this.config = _configService.getConfig();
     this.url = `${this.config.API.HOST}${this.config.API.CONTEXT.USER}`;
@@ -36,21 +40,36 @@ export class UserService {
     );
   }
   update(user: User): Observable<any> {
-    const urlUpdate = `${this.url}${this.config.API.ENDPOINT.USER.UPDATE}`;
+    const urlUpdate = `${this.url}${this.config.API.ENDPOINT.USER.UPDATE}${user._id}`;
     return this._http.put(urlUpdate, user, {
-      headers: new HttpHeaders(this.getAuthToken())
+      headers: new HttpHeaders({'Authorization': this.getAuthToken()})
+    }).map(success => {
+      this._authService.updateAuthUser(success)
+      return success;
     });
+  }
+  updateImage(image: File, id: string):Promise<any> {
+      return this._fileUploadService.upload(image, 'user', id)
+      .then(
+        success => {
+            console.log(this.TAG, 'updateImage SUCCESS, ', success);
+            const user: User = this._authService.getAuthUser();
+            user.image = success.file.name;
+            this._authService.updateAuthUser(user);
+            return success;
+        }
+      );
   }
   remove(id: string): Observable<any> {
     const urlRemove = `${this.url}${this.config.API.ENDPOINT.USER.DELETE}`;
     return this._http.delete(urlRemove, {
-      headers: new HttpHeaders(this.getAuthToken())
+      headers: new HttpHeaders({'Authorization': this.getAuthToken()})
     });
   }
   findAll(): Observable<any> {
     const urlFindAll = `${this.url}${this.config.API.ENDPOINT.USER.FIND_ALL}`;
     return this._http.get(urlFindAll, {
-      headers: new HttpHeaders(this.getAuthToken())
+      headers: new HttpHeaders({'Authorization': this.getAuthToken()})
     });
   }
 

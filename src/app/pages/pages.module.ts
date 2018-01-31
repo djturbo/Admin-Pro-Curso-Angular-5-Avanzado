@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
         FormsModule,
         UserModule,
         SharedModule,
-        ComponentsModule
+        ComponentsModule,
+        PipesModule
     ],
     exports: [
         DashboardComponent,

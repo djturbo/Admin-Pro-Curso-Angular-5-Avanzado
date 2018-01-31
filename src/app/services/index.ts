@@ -5,3 +5,4 @@ export * from './user/user.service';
 export * from './config.service';
 export * from './user/auth.service';
 export * from './guards/login.guard';
+export * from './file-upload.service';

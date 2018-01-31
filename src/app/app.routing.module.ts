@@ -5,7 +5,7 @@ import { Graficas1Component } from './pages/graficas1/graficas1.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { MainComponent } from './pages/main.component';
 import { ProgressComponent } from './pages/progress/progress.component';
-import { AccountSettingComponent } from './pages/user/index';
+import { AccountSettingComponent, ProfileComponent } from './pages/user/index';
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
 import { LoginGuard } from './services/index';
@@ -22,6 +22,7 @@ const routes: Routes = [
         { path: 'promesas', component: PromesasComponent, data: { title: 'Promesas' } },
         { path: 'rxjs', component: RxjsComponent, data: { title: 'RXJS Observables/Observer' } },
         { path: 'account-setting', component: AccountSettingComponent, data: { title: 'Dashboard' } },
+        { path: 'profile', component: ProfileComponent, data: {title: 'Perfil'} },
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ] },
     { path: 'login', redirectTo: 'user/sign-in', pathMatch: 'full', data: { title: 'Log In' }},

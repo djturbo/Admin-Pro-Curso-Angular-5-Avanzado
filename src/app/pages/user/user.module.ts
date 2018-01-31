@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent, SignInComponent, UserMainComponent } from './';
 import { UserRoutingModule } from './user-routing.module';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { ProfileComponent } from './profile/profile.component';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -12,8 +14,14 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     RouterModule,
     UserRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ],
-  declarations: [SignUpComponent, SignInComponent, UserMainComponent, AccountSettingComponent]
+  declarations: [
+    SignUpComponent,
+    SignInComponent,
+    UserMainComponent,
+    AccountSettingComponent,
+    ProfileComponent]
 })
 export class UserModule { }

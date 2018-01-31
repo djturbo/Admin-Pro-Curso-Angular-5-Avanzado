@@ -9,10 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  TAG = 'HeaderComponent :: ';
+  authUser: any;
+
   constructor(
-    private _authService: AuthService,
+    public _authService: AuthService,
     private _router: Router
-  ) { }
+  ) {
+
+  }
 
   doLogOut() {
     this._authService.doLogOut();
@@ -20,6 +25,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authUser = this._authService.getAuthUser();
+    console.log(this.TAG, 'ngOnInit() authUser: ', this.authUser);
   }
 
 }

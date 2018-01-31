@@ -8,10 +8,12 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class SidebarComponent implements OnInit {
+  TAG = 'SidebarComponent :: ';
+  authUser: any;
 
   constructor(
     public _sidebarService: SidebarService,
-    private _authService: AuthService,
+    public _authService: AuthService,
     private _router: Router
   ) { }
 
@@ -21,6 +23,8 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authUser = this._authService.getAuthUser();
+    console.log(this.TAG, 'ngOnInit() authUser: ', this.authUser);
   }
 
 }

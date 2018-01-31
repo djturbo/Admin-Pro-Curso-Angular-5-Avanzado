@@ -8,7 +8,7 @@
             "AUTH": "/auth",
             "SEARCH": "/api/search",
             "UPLOAD": "/api/upload",
-            "image": "/api/image"
+            "IMAGE": "/api/image"
         },
         "ENDPOINT": {
             "AUTH": {
@@ -18,8 +18,8 @@
             "USER": {
                 "FIND_ALL": "/",
                 "CREATE": "/",
-                "UPDATE": "/:id",
-                "DELETE": "/:id"
+                "UPDATE": "/",
+                "DELETE": "/"
             },
             "HOSPITAL": {
                 "FIND_ALL": "/",
@@ -38,7 +38,7 @@
                 "FIND_BY_COLLECTION": "/:collection"
             },
             "UPLOAD": {
-                "FILE": "/:collection/:id"
+                "FILE": "/"
             },
             "IMAGE": {
                 "GET_IMAGE": "/:collection"

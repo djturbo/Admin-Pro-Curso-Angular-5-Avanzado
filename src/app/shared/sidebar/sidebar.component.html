@@ -8,12 +8,14 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="user-profile">
-                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><img src="../assets/images/users/profile.png" alt="user" /><span class="hide-menu">Steave Jobs </span></a>
+                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
+                        <img [src]="_authService.currentUser.image | image" alt="user" />
+                        <span class="hide-menu">{{_authService.currentUser.name}} {{_authService.currentUser.surname}} </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a class="pointer" href="javascript:void()">My Profile </a></li>
-                        <li><a class="pointer" href="javascript:void()">My Balance</a></li>
-                        <li><a class="pointer" href="javascript:void()">Inbox</a></li>
-                        <li><a class="pointer" [routerLink]="['/account-setting']">Configurar Cuenta</a></li>
+                        <li><a class="pointer" routerLink="/profile" routerLinkActive="active">Perfil </a></li>
+                        <li><a class="pointer" href="javascript:void()">Balance</a></li>
+                        <li><a class="pointer" href="javascript:void()">Bandeja de Entrada</a></li>
+                        <li><a class="pointer" [routerLink]="['/account-setting']" routerLinkActive="active">Configurar Cuenta</a></li>
                         <li><a class="pointer" (click)="doLogOut();">Cerrar Sesion</a></li>
                     </ul>
                 </li>

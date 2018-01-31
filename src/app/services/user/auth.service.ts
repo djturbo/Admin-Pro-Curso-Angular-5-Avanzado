@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
 import { Observable } from 'rxjs/Observable';
 import { Constants } from '../../util/constants.const';
+import { User } from '../../model/user.model';
 
 
 @Injectable()
@@ -10,13 +11,14 @@ export class AuthService {
     TAG = 'AuthService :: ';
     config: any;
     url: string;
-
+    currentUser: User;
     constructor(
       private _http: HttpClient,
       private _configService: ConfigService
     ) {
       this.config = _configService.getConfig();
       this.url = `${this.config.API.HOST}${this.config.API.CONTEXT.AUTH}`;
+      this.getAuthUser();
       console.log(this.TAG, 'config: ', this.config);
     }
 
@@ -49,11 +51,15 @@ export class AuthService {
         localStorage.removeItem(Constants.Security.AUTH_TOKEN);
         localStorage.removeItem(Constants.Security.AUTH_USER);
     }
-
+    updateAuthUser(user: any) {
+        this.currentUser = user;
+        localStorage.setItem(Constants.Security.AUTH_USER, JSON.stringify(user));
+    }
     saveOnLocalStorage(success: any, hiddenMail?: boolean) {
         const token = success.token;
         const user = success.user;
-        if(hiddenMail) {
+        this.currentUser = user;
+        if (hiddenMail) {
             delete user.email;
         }
         localStorage.setItem(Constants.Security.AUTH_TOKEN, token);
@@ -64,6 +70,7 @@ export class AuthService {
         let user = null;
         if (strUser) {
             user = JSON.parse(strUser);
+            this.currentUser = user;
         }
         return user;
     }
@@ -76,5 +83,7 @@ export class AuthService {
         console.log(this.TAG, 'isAuthenticated validToken: ', validToken);
         return validToken;
     }
+
+
 
 }

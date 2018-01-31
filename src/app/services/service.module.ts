@@ -8,7 +8,8 @@ import {
   ConfigService,
   AuthService,
   UserService,
-  LoginGuard
+  LoginGuard,
+  FileUploadService
 } from './';
 
 @NgModule({
@@ -23,6 +24,7 @@ import {
     UserService,
     AuthService,
     LoginGuard,
+    FileUploadService,
     ConfigService,
     {
       provide: APP_INITIALIZER,
