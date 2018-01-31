@@ -48,12 +48,14 @@
     </div>
     <div class="col-lg-5">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" align="center">
                 <h4 class="card-title">Imagen de Usuario</h4>
                 <h6 class="card-subtitle">Nombre de Usuario</h6>
 
-                <img *ngIf="_authService.currentUser" [src]="_authService.currentUser.image | image" alt="">
-
+                <img *ngIf="!tempImage; else preview" [src]="_authService.currentUser.image | image" [alt]="_authService.currentUser.image" class="w150" />
+                <ng-template #preview>
+                    <img [src]="tempImage" [alt]="_authService.currentUser.image" class="w150" />
+                </ng-template>
                 <input type="file" (change)="onImageToUploadChange($event.target.files[0])" />
 
                 <br>

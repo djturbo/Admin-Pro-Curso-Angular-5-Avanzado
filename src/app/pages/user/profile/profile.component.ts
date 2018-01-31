@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
   user: User;
   authUser: User;
   confirmPassword: string;
+  tempImage: string;
+
 
   constructor(
     public _authService: AuthService,
@@ -47,9 +49,21 @@ export class ProfileComponent implements OnInit {
   }
   onImageToUploadChange(file: File) {
     console.log(this.TAG, 'onImageToUploadChange :: ', event);
-    if (file) {
-      this.imageToUpload = file;
+
+    if ( file.type.indexOf('image') < 0 ) {
+      swal('Solo imágenes', 'El archivo seleccionado no es una imagen', 'warning');
+      return;
     }
+    this.imageToUpload = file;
+ 
+
+    const reader = new FileReader();
+    const urlImageTemp = reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      this.tempImage = reader.result;
+    };
+
   }
 
   changeImage() {
