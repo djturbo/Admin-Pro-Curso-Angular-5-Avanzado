@@ -6,3 +6,4 @@ export * from './config.service';
 export * from './user/auth.service';
 export * from './guards/login.guard';
 export * from './file-upload.service';
+export * from './search.service';

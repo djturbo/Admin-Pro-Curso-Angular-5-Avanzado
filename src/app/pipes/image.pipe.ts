@@ -13,16 +13,17 @@ export class ImagePipe implements PipeTransform {
   }
 
   transform(image: string, collection: string = 'user'): any {
-    let url = `${this.config.API.HOST}${this.config.API.CONTEXT.IMAGE}/${collection}/${image}`;
+    let url = `${this.config.API.HOST}${this.config.API.CONTEXT.IMAGE}/${collection}`;
 
     if ( !image ) {
-      return url += '/xxx';
+      url += '/xxx';
+    } else {
+      if (image.indexOf('https') !== -1) {
+        url = image;
+      } else {
+         url += `/${image}`;
+      }
     }
-
-    if (image.indexOf('https') !== -1) {
-      return image;
-    }
-
     return url;
   }
 

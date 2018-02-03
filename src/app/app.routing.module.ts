@@ -8,7 +8,8 @@ import { ProgressComponent } from './pages/progress/progress.component';
 import { AccountSettingComponent, ProfileComponent } from './pages/user/index';
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
-import { LoginGuard } from './services/index';
+import { LoginGuard } from './services';
+import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
     {
@@ -16,18 +17,21 @@ const routes: Routes = [
         component: MainComponent,
         canActivate: [LoginGuard],
         children: [
-        { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
-        { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },
-        { path: 'graficas', component: Graficas1Component, data: { title: 'Graficas' } },
-        { path: 'promesas', component: PromesasComponent, data: { title: 'Promesas' } },
-        { path: 'rxjs', component: RxjsComponent, data: { title: 'RXJS Observables/Observer' } },
-        { path: 'account-setting', component: AccountSettingComponent, data: { title: 'Dashboard' } },
-        { path: 'profile', component: ProfileComponent, data: {title: 'Perfil'} },
-        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    ] },
+            { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+            { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },
+            { path: 'graficas', component: Graficas1Component, data: { title: 'Graficas' } },
+            { path: 'promesas', component: PromesasComponent, data: { title: 'Promesas' } },
+            { path: 'rxjs', component: RxjsComponent, data: { title: 'RXJS Observables/Observer' } },
+            { path: 'account-setting', component: AccountSettingComponent, data: { title: 'Dashboard' } },
+            { path: 'profile', component: ProfileComponent, data: {title: 'Perfil'} },
+            /** Mantenimiento */
+            { path: 'users', component: UsersComponent, data: {title: 'Usuarios'} },
+            /** Fin Mantenimiendo */
+            /*{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: '**', component: NotFoundComponent }*/
+        ] },
     { path: 'login', redirectTo: 'user/sign-in', pathMatch: 'full', data: { title: 'Log In' }},
-    { path: 'registrar', redirectTo: 'user/sign-up', pathMatch: 'full', data: { title: 'Registrar' }},
-    { path: '**', component: NotFoundComponent }
+    { path: 'registrar', redirectTo: 'user/sign-up', pathMatch: 'full', data: { title: 'Registrar' }}
 ];
 
 @NgModule({

@@ -9,7 +9,8 @@ import {
   AuthService,
   UserService,
   LoginGuard,
-  FileUploadService
+  FileUploadService,
+  SearchService
 } from './';
 
 @NgModule({
@@ -25,6 +26,7 @@ import {
     AuthService,
     LoginGuard,
     FileUploadService,
+    SearchService,
     ConfigService,
     {
       provide: APP_INITIALIZER,

@@ -14,6 +14,7 @@ import { ComponentsModule } from '../components/components.module';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { PipesModule } from '../pipes/pipes.module';
         Graficas1Component,
         MainComponent,
         PromesasComponent,
-        RxjsComponent
+        RxjsComponent,
+        UsersComponent
     ],
     imports: [
         CommonModule,

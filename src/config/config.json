@@ -35,7 +35,7 @@
             },
             "SEARCH": {
                 "FIND_IN_ALL": "/",
-                "FIND_BY_COLLECTION": "/:collection"
+                "FIND_BY_COLLECTION": "/"
             },
             "UPLOAD": {
                 "FILE": "/"
