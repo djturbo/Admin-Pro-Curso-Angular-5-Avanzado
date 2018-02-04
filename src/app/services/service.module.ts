@@ -10,7 +10,9 @@ import {
   UserService,
   LoginGuard,
   FileUploadService,
-  SearchService
+  SearchService,
+  HospitalService,
+  MedicoService
 } from './';
 
 @NgModule({
@@ -27,6 +29,8 @@ import {
     LoginGuard,
     FileUploadService,
     SearchService,
+    HospitalService,
+    MedicoService,
     ConfigService,
     {
       provide: APP_INITIALIZER,

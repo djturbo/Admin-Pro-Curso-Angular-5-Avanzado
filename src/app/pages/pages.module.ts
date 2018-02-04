@@ -15,6 +15,9 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { UsersComponent } from './users/users.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,10 @@ import { UsersComponent } from './users/users.component';
         MainComponent,
         PromesasComponent,
         RxjsComponent,
-        UsersComponent
+        UsersComponent,
+        HospitalsComponent,
+        MedicosComponent,
+        MedicoComponent
     ],
     imports: [
         CommonModule,

@@ -17,21 +17,24 @@
             },
             "USER": {
                 "FIND_ALL": "/",
+                "FIND_ONE": "/",
                 "CREATE": "/",
                 "UPDATE": "/",
                 "DELETE": "/"
             },
             "HOSPITAL": {
                 "FIND_ALL": "/",
+                "FIND_ONE": "/",
                 "CREATE": "/",
-                "UPDATE": "/:id",
-                "DELETE": "/:id"
+                "UPDATE": "/",
+                "DELETE": "/"
             },
             "MEDICO": {
                 "FIND_ALL": "/",
+                "FIND_ONE": "/",
                 "CREATE": "/",
-                "UPDATE": "/:id",
-                "DELETE": "/:id"
+                "UPDATE": "/",
+                "DELETE": "/"
             },
             "SEARCH": {
                 "FIND_IN_ALL": "/",
@@ -41,7 +44,7 @@
                 "FILE": "/"
             },
             "IMAGE": {
-                "GET_IMAGE": "/:collection"
+                "GET_IMAGE": "/"
             }
         }
     }

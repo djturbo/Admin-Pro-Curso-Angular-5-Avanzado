@@ -10,7 +10,7 @@ import { AuthService } from '../user/auth.service';
 import { FileUploadService } from '../file-upload.service';
 
 export abstract class AbstractService {
-    private TAG = 'AbstractService :: ';
+    protected TAG = 'AbstractService :: ';
     config: any;
     url: string;
 
@@ -18,22 +18,28 @@ export abstract class AbstractService {
       protected _http: HttpClient,
       protected _configService: ConfigService,
       protected _context: string,
-      private _authService?: AuthService,
-      private _fileUploadService?: FileUploadService
+      protected _authService?: AuthService,
+      protected _fileUploadService?: FileUploadService
     ) {
       this.config = _configService.getConfig();
       this.url = `${this.config.API.HOST}${_context}`;
       console.log(this.TAG, 'config: ', this.config);
     }
 
+    private getAuthHeaders(): HttpHeaders {
+      return new HttpHeaders({'Authorization': this.getAuthToken()});
+    }
+
     protected doPost(body: any, endpoint: string): Observable<any> {
         const doPostUrl = `${this.url}${endpoint}`;
-        return this._http.post(doPostUrl, body);
+        return this._http.post(doPostUrl, body, {
+          headers: this.getAuthHeaders()
+        });
     }
     protected doPut(body: any, endpoint: string): Observable<any> {
         const doPutUrl = `${this.url}${endpoint}${body._id}`;
         return this._http.put(doPutUrl, body, {
-          headers: new HttpHeaders({'Authorization': this.getAuthToken()})
+          headers: this.getAuthHeaders()
         }).map(success => {
           this._authService.updateAuthUser(success)
           return success;
@@ -54,17 +60,24 @@ export abstract class AbstractService {
           );
       }
       protected doRemove(id: string, endpoint: string): Observable<any> {
-        const urlRemove = `${this.url}${endpoint}`;
+        const urlRemove = `${this.url}${endpoint}${id}`;
         return this._http.delete(urlRemove, {
-          headers: new HttpHeaders({'Authorization': this.getAuthToken()})
+          headers: this.getAuthHeaders()
         });
       }
       protected doGet(endpoint: string, params?: HttpParams): Observable<any> {
         const urlFindAll = `${this.url}${endpoint}`;
         return this._http.get(urlFindAll, {
-          headers: new HttpHeaders({'Authorization': this.getAuthToken()}),
+          headers: this.getAuthHeaders(),
           params
         });
+      }
+
+      protected findOne(endpoint: string, id: string): Observable<any> {
+        const urlFindOne = `${this.url}${endpoint}${id}`;
+        return this._http.get(urlFindOne, {
+          headers: this.getAuthHeaders()
+        } );
       }
 
       private getAuthToken(): string {

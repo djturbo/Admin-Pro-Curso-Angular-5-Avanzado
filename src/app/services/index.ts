@@ -7,3 +7,5 @@ export * from './user/auth.service';
 export * from './guards/login.guard';
 export * from './file-upload.service';
 export * from './search.service';
+export * from './hospital.service';
+export * from './medico.service';

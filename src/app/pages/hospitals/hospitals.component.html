@@ -1,0 +1,64 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input #searchInput (keyup)="searchHospital(searchInput.value)" type="text" class="form-control" placeholder="Buscar">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="alert alert-warning text-center">
+            <strong>Loading</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-right">
+        <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary" (click)="createHospital()"><i class="fa fa-plus" aria-hidden="true"></i> Crear Hospital</button>
+    </div>
+</div>
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Hospitales encontrados ( <strong>{{pageInfo.total}}</strong> )</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitals; let i = index;">
+                            <td>
+                                <img [src]="hospital.image | image:'hospital'" [alt]="hospital.name" style="width:50px;" class="pointer" (click)="changeImage(hospital)" />
+                            </td>
+                            <td><input type="text" [value]="hospital.name" />
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" (click)="saveHospital(hospital);"><i class="fa fa-save" aria-hidden="true"></i></button>
+                                <button class="btn btn-danger" (click)="removeHospital(hospital)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary" (click)="changePage(- pageInfo.size)">Anteriores</button>
+                <button class="btn btn-secondary" (click)="changePage(pageInfo.size)">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>
