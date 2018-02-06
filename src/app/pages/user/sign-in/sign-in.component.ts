@@ -4,7 +4,7 @@ import { NgModel } from '@angular/forms';
 import { AuthService } from '../../../services';
 declare function initPlugins();
 declare const gapi: any;
-
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-in',
@@ -35,6 +35,7 @@ export class SignInComponent implements OnInit {
       },
       err => {
         console.error(this.TAG, 'Login error, Error: ', err);
+        swal('Error de Autenticación', err.error.message, 'error');
       }
     );
     // this._router.navigate(['dashboard']);

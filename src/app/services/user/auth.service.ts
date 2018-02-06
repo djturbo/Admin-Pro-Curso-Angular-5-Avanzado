@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { Constants } from '../../util/constants.const';
 import { User } from '../../model/user.model';
 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +14,8 @@ export class AuthService {
     config: any;
     url: string;
     currentUser: User;
+    _menu: any[] = [];
+
     constructor(
       private _http: HttpClient,
       private _configService: ConfigService
@@ -33,6 +37,11 @@ export class AuthService {
                 }
                 this.saveOnLocalStorage(success, deleteEmail);
             }
+        ).catch(
+            err => {
+                console.log(this.TAG, 'ERROR status: ', err.status, ' message error: ', err.error.message);
+                return Observable.throw(err);
+            }
         );
     }
 
@@ -50,6 +59,7 @@ export class AuthService {
     doLogOut() {
         localStorage.removeItem(Constants.Security.AUTH_TOKEN);
         localStorage.removeItem(Constants.Security.AUTH_USER);
+        localStorage.removeItem(Constants.Security.MENU);
     }
     updateAuthUser(user: any) {
         this.currentUser = user;
@@ -64,7 +74,13 @@ export class AuthService {
         }
         localStorage.setItem(Constants.Security.AUTH_TOKEN, token);
         localStorage.setItem(Constants.Security.AUTH_USER, JSON.stringify(user));
+        localStorage.setItem(Constants.Security.MENU, JSON.stringify(success.menu));
     }
+
+    public get menu() {
+        return JSON.parse(localStorage.getItem(Constants.Security.MENU));
+    }
+
     getAuthUser(): any {
         const strUser = localStorage.getItem(Constants.Security.AUTH_USER);
         let user = null;

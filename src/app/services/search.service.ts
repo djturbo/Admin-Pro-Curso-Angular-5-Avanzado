@@ -26,6 +26,8 @@ export class SearchService extends AbstractService {
 
    searchInAll(tosearch: string): Observable<any> {
     const endpoint: string = `${this.config.API.ENDPOINT.SEARCH.FIND_IN_ALL}`;
-    return this.doGet(endpoint);
+    const params = new HttpParams()
+      .set('tosearch', tosearch);
+    return this.doGet(endpoint, params);
    }
 }

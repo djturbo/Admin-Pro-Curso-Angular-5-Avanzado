@@ -24,7 +24,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.authUser = this._authService.getAuthUser();
-    console.log(this.TAG, 'ngOnInit() authUser: ', this.authUser);
+    this._sidebarService.loadMenu();
+    console.log(this.TAG, 'ngOnInit() authUser: ', this.authUser, ' menu: ', this._sidebarService.menu);
   }
 
 }

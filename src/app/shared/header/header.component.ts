@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/index';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/index';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +22,12 @@ export class HeaderComponent implements OnInit {
   doLogOut() {
     this._authService.doLogOut();
     this._router.navigate(['/login']);
+  }
+
+
+  searchFromAll(toSearch: string) {
+    this._router.navigate(['/search', toSearch]);
+
   }
 
   ngOnInit() {

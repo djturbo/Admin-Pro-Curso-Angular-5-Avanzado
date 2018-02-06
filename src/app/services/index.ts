@@ -9,3 +9,4 @@ export * from './file-upload.service';
 export * from './search.service';
 export * from './hospital.service';
 export * from './medico.service';
+export * from './guards/admin.guard';

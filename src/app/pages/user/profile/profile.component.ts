@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
 import { AuthService } from '../../../services/user/auth.service';
 import { User } from '../../../model/user.model';
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     public _authService: AuthService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   updateUser(frmUser: NgForm) {
@@ -81,8 +83,19 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this._authService.getAuthUser();
-    this.authUser = JSON.parse(JSON.stringify(this.user));
+    if (this._activatedRoute.snapshot.params.id) {
+         this._userService.findById(this._activatedRoute.snapshot.params.id).subscribe(
+          success => {
+            this.user = success.user;
+          }, error => {
+            console.log( this.TAG, 'Error al cargar usuario: ', error);
+          }
+      );
+
+    } else {
+      this.user = this._authService.getAuthUser();
+      this.authUser = JSON.parse(JSON.stringify(this.user));
+    }
   }
 
 }

@@ -40,7 +40,12 @@ export class UserService {
         swal('Usuario Creado', success.user.email, 'success');
         return success;
       }
-    );
+    ).catch(
+      err => {
+          console.log(this.TAG, 'ERROR status: ', err.status, ' message error: ', err.error.message);
+          return Observable.throw(err);
+      }
+  );;
   }
   update(user: User): Observable<any> {
     const urlUpdate = `${this.url}${this.config.API.ENDPOINT.USER.UPDATE}${user._id}`;
@@ -78,6 +83,16 @@ export class UserService {
       .set('size', size);
 
     return this._http.get(urlFindAll, {
+      headers: new HttpHeaders({'Authorization': this.getAuthToken()}),
+      params
+    });
+  }
+
+  findById(id: string): Observable<any> {
+    const urlFindOne = `${this.url}${this.config.API.ENDPOINT.USER.FIND_ONE}`;
+    const params = new HttpParams()
+      .set('id', id);
+    return this._http.get(urlFindOne, {
       headers: new HttpHeaders({'Authorization': this.getAuthToken()}),
       params
     });

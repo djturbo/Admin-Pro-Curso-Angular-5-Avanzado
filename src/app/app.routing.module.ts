@@ -8,11 +8,13 @@ import { ProgressComponent } from './pages/progress/progress.component';
 import { AccountSettingComponent, ProfileComponent } from './pages/user/index';
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
-import { LoginGuard } from './services';
+import { LoginGuard, AdminGuard } from './services';
 import { UsersComponent } from './pages/users/users.component';
 import { HospitalsComponent } from './pages/hospitals/hospitals.component';
 import { MedicosComponent } from './pages/medicos/medicos.component';
 import { MedicoComponent } from './pages/medicos/medico.component';
+import { SearchComponent } from './pages/search/search.component';
+import { AuthService } from './services/user/auth.service';
 
 const routes: Routes = [
     {
@@ -27,8 +29,10 @@ const routes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: { title: 'RXJS Observables/Observer' } },
             { path: 'account-setting', component: AccountSettingComponent, data: { title: 'Dashboard' } },
             { path: 'profile', component: ProfileComponent, data: {title: 'Perfil'} },
+            { path: 'profile/:id', component: ProfileComponent, data: {title: 'Perfil'} },
+            { path: 'search/:toSearch', component: SearchComponent, data: {title: 'Búsqueda'} },
             /** Mantenimiento */
-            { path: 'users', component: UsersComponent, data: {title: 'Usuarios'} },
+            { path: 'users', canActivate: [AdminGuard], component: UsersComponent, data: {title: 'Usuarios'} },
             { path: 'hospitals', component: HospitalsComponent, data: {title: 'Hospitales'} },
             { path: 'doctors', component: MedicosComponent, data: {title: 'Medicos'} },
             { path: 'doctor/:id', component: MedicoComponent, data: {title: 'Actualizar Medico'} },
@@ -37,7 +41,8 @@ const routes: Routes = [
             { path: '**', component: NotFoundComponent }*/
         ] },
     { path: 'login', redirectTo: 'user/sign-in', pathMatch: 'full', data: { title: 'Log In' }},
-    { path: 'registrar', redirectTo: 'user/sign-up', pathMatch: 'full', data: { title: 'Registrar' }}
+    { path: 'registrar', redirectTo: 'user/sign-up', pathMatch: 'full', data: { title: 'Registrar' }},
+    { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

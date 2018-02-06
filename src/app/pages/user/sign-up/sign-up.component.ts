@@ -45,8 +45,9 @@ export class SignUpComponent implements OnInit {
         console.log(this.TAG, 'Create User: ', success);
         this._router.navigate(['/user/sign-in']);
       },
-      error => {
-        console.error(this.TAG, 'Error al crear usuario: Error: ', error);
+      err => {
+        console.error(this.TAG, 'Error al crear usuario: Error: ', err);
+        swal('Error Alta Usuario', err.error.error.message, 'error');
       }
     );
   }

@@ -17,14 +17,14 @@
             },
             "USER": {
                 "FIND_ALL": "/",
-                "FIND_ONE": "/",
+                "FIND_ONE": "/one",
                 "CREATE": "/",
                 "UPDATE": "/",
                 "DELETE": "/"
             },
             "HOSPITAL": {
                 "FIND_ALL": "/",
-                "FIND_ONE": "/",
+                "FIND_ONE": "/one",
                 "CREATE": "/",
                 "UPDATE": "/",
                 "DELETE": "/"
