@@ -86,3 +86,6 @@ $ git tag -> Para ver los tags
     Ejemplo:
 
     console.log('Node/Express: \x1b[36m%s\x1b[0m', 'online'); 
+
+## SECCIÓN 18 GENERACIÓN BUILD DE PRODUCCIÓN:
+ng build -prod -aot false

@@ -13,7 +13,8 @@ import {
   SearchService,
   HospitalService,
   MedicoService,
-  AdminGuard
+  AdminGuard,
+  RefreshTokenGuard
 } from './';
 
 @NgModule({
@@ -33,6 +34,7 @@ import {
     HospitalService,
     MedicoService,
     AdminGuard,
+    RefreshTokenGuard,
     ConfigService,
     {
       provide: APP_INITIALIZER,

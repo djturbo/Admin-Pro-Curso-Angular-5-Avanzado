@@ -45,7 +45,7 @@ export class UserService {
           console.log(this.TAG, 'ERROR status: ', err.status, ' message error: ', err.error.message);
           return Observable.throw(err);
       }
-  );;
+  );
   }
   update(user: User): Observable<any> {
     const urlUpdate = `${this.url}${this.config.API.ENDPOINT.USER.UPDATE}${user._id}`;
@@ -87,6 +87,7 @@ export class UserService {
       params
     });
   }
+
 
   findById(id: string): Observable<any> {
     const urlFindOne = `${this.url}${this.config.API.ENDPOINT.USER.FIND_ONE}`;

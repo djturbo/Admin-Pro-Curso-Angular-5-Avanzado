@@ -13,7 +13,8 @@
         "ENDPOINT": {
             "AUTH": {
                 "LOGIN": "/login",
-                "GOOGLE_SIGN_IN": "/oauth"
+                "GOOGLE_SIGN_IN": "/oauth",
+                "REFRESH": "/refresh"
             },
             "USER": {
                 "FIND_ALL": "/",

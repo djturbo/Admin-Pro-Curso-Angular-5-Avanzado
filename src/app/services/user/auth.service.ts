@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigService } from '../config.service';
 import { Observable } from 'rxjs/Observable';
 import { Constants } from '../../util/constants.const';
@@ -53,9 +53,25 @@ export class AuthService {
                 this.saveOnLocalStorage(success);
                 return success;
             }
-        );
+        ).catch(error => {
+            console.log(this.TAG, 'doLoginWithOAuth error: ', error.message);
+            return Observable.throw(error);
+        });
     }
 
+    refreshToken(): Observable<any> {
+        const urlRefresh = `${this.url}${this.config.API.ENDPOINT.AUTH.REFRESH}`;
+        const headers: HttpHeaders = new HttpHeaders().set('Authorization', this.getAuthToken());
+        return this._http.post(urlRefresh, {}, {
+            headers: headers
+        }).map((success: any) => {
+            localStorage.setItem(Constants.Security.AUTH_TOKEN, success.token);
+            return success.token;
+        }).catch(error => {
+            console.log(this.TAG, 'refresh token error: ', error.message);
+            return Observable.throw(error);
+        });
+      }
     doLogOut() {
         localStorage.removeItem(Constants.Security.AUTH_TOKEN);
         localStorage.removeItem(Constants.Security.AUTH_USER);

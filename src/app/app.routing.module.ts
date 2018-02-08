@@ -15,6 +15,7 @@ import { MedicosComponent } from './pages/medicos/medicos.component';
 import { MedicoComponent } from './pages/medicos/medico.component';
 import { SearchComponent } from './pages/search/search.component';
 import { AuthService } from './services/user/auth.service';
+import { RefreshTokenGuard } from './services/guards/refresh-token.guard';
 
 const routes: Routes = [
     {
@@ -22,7 +23,10 @@ const routes: Routes = [
         component: MainComponent,
         canActivate: [LoginGuard],
         children: [
-            { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+            { path: 'dashboard',
+                canActivate: [RefreshTokenGuard],
+                component: DashboardComponent,
+                data: { title: 'Dashboard' } },
             { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },
             { path: 'graficas', component: Graficas1Component, data: { title: 'Graficas' } },
             { path: 'promesas', component: PromesasComponent, data: { title: 'Promesas' } },
